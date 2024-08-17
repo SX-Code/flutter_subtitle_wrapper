@@ -1,3 +1,9 @@
+# Fixed By SX-Code
+
+- 删除网络字幕文件中的多余换行符，保证字幕能够正确解析多语字幕
+- 当provider关闭时，移除 videoPlayerController的监听方法。
+  - videoPlayerController可以传递给不同页面，页面跳转之后可以保证视频进度，此时想要不同页正确使用字幕组件，需要适时移除videoPlayerController的监听方法
+
 # subtitle_wrapper_package
 
 [![](https://img.shields.io/badge/pub-v2.1.0-brightgreen.svg)](https://pub.dev/packages/subtitle_wrapper_package)
