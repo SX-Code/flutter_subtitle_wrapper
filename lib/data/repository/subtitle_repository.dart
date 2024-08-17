@@ -112,6 +112,13 @@ class SubtitleDataRepository extends SubtitleRepository {
     return subtitlesContent;
   }
 
+  // 删除字幕文件中多余的空行, remove empty lines from original subtitles file
+  String _removeEmptyLines(String content) {
+    List<String> lines = content.split("\r");
+    lines.removeWhere((line) => line.trim().isEmpty);
+    return lines.join('\r');
+  }
+
   Subtitles getSubtitlesData(
     String subtitlesContent,
     SubtitleType subtitleType,
@@ -132,7 +139,8 @@ class SubtitleDataRepository extends SubtitleRepository {
     } else {
       throw Exception('Incorrect subtitle type');
     }
-
+    
+    subtitlesContent = _removeEmptyLines(subtitlesContent);
     final matches = regExp.allMatches(subtitlesContent).toList();
     final subtitleList = <Subtitle>[];
 
